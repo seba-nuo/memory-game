@@ -109,13 +109,14 @@ function Game() {
         </>
       )}
       {
+        hasGameEnded &&
         <div className="flex flex-col items-center justify-center absolute top-1/3 left-1/2 -translate-x-1/2 bg-green-600 p-4 border-2 border-gray-300 rounded-md">
           <h1 className="text-4xl font-bold text-white">You Win!</h1>
           <h2 className="text-2xl text-white">
-          <span className="text-left">Cards clicked:</span> {totalCardsClicked} times
+            Cards clicked: {totalCardsClicked} times
           </h2>
           <h2 className="text-2xl text-white">
-            <span>Time:</span> {seconds} seconds
+            Time: {seconds} seconds
           </h2>
           <Link
             to="/"
