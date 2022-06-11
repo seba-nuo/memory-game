@@ -1,9 +1,19 @@
 import React from "react";
 import { useEffect } from "react";
+import { GameStatus } from "../services/constants";
 
-const Timer = ({ shouldStart, shouldStop,  seconds, setSeconds, minutes, setMinutes}) => {
-
+const Timer = ({
+  shouldStart,
+  gameStatus,
+  seconds,
+  setSeconds,
+  minutes,
+  setMinutes,
+  setGameStatus,
+}) => {
   useEffect(() => {
+    const shouldStop =
+      gameStatus === GameStatus.LOSE || gameStatus === GameStatus.WIN;
     if (shouldStart && !shouldStop) {
       let myInterval = setInterval(() => {
         if (seconds > 0) {
@@ -11,6 +21,7 @@ const Timer = ({ shouldStart, shouldStop,  seconds, setSeconds, minutes, setMinu
         }
         if (seconds === 0) {
           if (minutes === 0) {
+            setGameStatus(GameStatus.LOSE);
             clearInterval(myInterval);
           } else {
             setMinutes(minutes - 1);
@@ -22,7 +33,7 @@ const Timer = ({ shouldStart, shouldStop,  seconds, setSeconds, minutes, setMinu
         clearInterval(myInterval);
       };
     }
-  }, [shouldStart, shouldStop, seconds, minutes]);
+  }, [shouldStart, gameStatus, seconds, minutes, setMinutes, setSeconds, setGameStatus]);
 
   return (
     <div className="mt-3">

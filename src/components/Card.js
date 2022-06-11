@@ -1,7 +1,7 @@
 import React from "react";
 import "../index.css";
 
-function Card({ children, isClicked, addCardClicked, cardIndex, pairFinded }) {
+function Card({ children, isClicked, addCardClicked, cardIndex, pairFinded, gameStatus }) {
   return (
     <div
       className={`border-4 py-8 px-6 flex justify-center border-gray-400 rounded-md select-none w-16 xl:w-10
